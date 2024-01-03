@@ -4,11 +4,11 @@ import subprocess
 import threading
 import os
 
-class GitWorkflowCommand(sublime_plugin.TextCommand):
+class EasyCommitCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        threading.Thread(target=self.git_workflow).start()
+        threading.Thread(target=self.easy_commit).start()
 
-    def git_workflow(self):
+    def easy_commit(self):
         working_dir = self.view.window().extract_variables()['folder']
         self.update_status('Performing fetch...')
 
@@ -76,7 +76,7 @@ class GitWorkflowCommand(sublime_plugin.TextCommand):
         self.erase_status()
 
     def update_status(self, message):
-        sublime.set_timeout(lambda: self.view.set_status('git_workflow', message), 0)
+        sublime.set_timeout(lambda: self.view.set_status('easy_commit', message), 0)
 
     def erase_status(self):
-        sublime.set_timeout(lambda: self.view.erase_status('git_workflow'), 0)
+        sublime.set_timeout(lambda: self.view.erase_status('easy_commit'), 0)
