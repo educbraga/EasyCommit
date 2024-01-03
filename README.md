@@ -3,9 +3,10 @@
 **EasyGitCommit: Effortless Git commits in Sublime Text for Developers who want to ship more.**
 
 ## Overview
-EasyGitCommit is a streamlined Git management tool for Sublime Text, enhancing productivity by automating the Git workflow. It simplifies the process of making Git commits, allowing developers to focus more on coding and less on version control management.
+EasyGitCommit simplifies the process of making Git commits, allowing developers to focus more on coding and less on version control management.
 
 ## Features
+After pressing a single key binding:
 - **Automated Git Workflow**: The plugin performs a series of Git operations including fetch, pull, and add all.
 - **Commit Messages**: After staging changes, it prompts for a commit message.
 - **Efficient Committing**: Commits with the provided message and then pushes the changes to the remote repository.
