@@ -23,7 +23,7 @@ After installation, configure a keybinding to trigger the plugin:
 2. Add a keybinding for the command `git_workflow`:
 
    ```json
-   { "keys": ["your_preferred_shortcut"], "command": "git_workflow" }
+   { "keys": ["your_preferred_shortcut"], "command": "easy_commit" }
    ```
 
 Replace your_preferred_shortcut with your desired key combination.
