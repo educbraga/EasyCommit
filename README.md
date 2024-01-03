@@ -1,9 +1,9 @@
-# EasyGitCommit
+# EasyCommit
 
-**EasyGitCommit: Effortless Git commits in Sublime Text for Developers who want to ship more.**
+**EasyCommit: Effortless Git commits in Sublime Text for Developers who want to ship more.**
 
 ## Overview
-EasyGitCommit simplifies the process of making Git commits, allowing developers to focus more on coding and less on version control management.
+EasyCommit simplifies the process of making Git commits, allowing developers to focus more on coding and less on version control management.
 
 ## Features
 After pressing a single key binding:
@@ -15,7 +15,7 @@ After pressing a single key binding:
 - **Cancellation Option**: Allows cancelling the commit process by pressing ESC.
 
 ## Installation
-EasyGitCommit can be installed via Package Control in Sublime Text. Simply search for "EasyGitCommit" and install it directly within your editor.
+EasyCommit can be installed via Package Control in Sublime Text. Simply search for "EasyCommit" and install it directly within your editor.
 
 ## Usage
 After installation, configure a keybinding to trigger the plugin:
@@ -28,11 +28,11 @@ After installation, configure a keybinding to trigger the plugin:
 
 Replace your_preferred_shortcut with your desired key combination.
 
-Once set up, use this shortcut to activate EasyGitCommit in any Git-enabled project.
+Once set up, use this shortcut to activate EasyCommit in any Git-enabled project.
 
 ## Contributing
 
-Contributions to EasyGitCommit are welcome! If you have suggestions, bug reports, or want to contribute code, please feel free to open an issue or submit a pull request.
+Contributions to EasyCommit are welcome! If you have suggestions, bug reports, or want to contribute code, please feel free to open an issue or submit a pull request.
 
 ## Support
 
