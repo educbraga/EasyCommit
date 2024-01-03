@@ -1,2 +1,42 @@
 # EasyGitCommit
-EasyGitCommit: Effortless Git commits in Sublime Text, Simplified for Developers who want to ship more.
+
+**EasyGitCommit: Effortless Git commits in Sublime Text for Developers who want to ship more.**
+
+## Overview
+EasyGitCommit is a streamlined Git management tool for Sublime Text, enhancing productivity by automating the Git workflow. It simplifies the process of making Git commits, allowing developers to focus more on coding and less on version control management.
+
+## Features
+- **Automated Git Workflow**: The plugin performs a series of Git operations including fetch, pull, and add all.
+- **Commit Messages**: After staging changes, it prompts for a commit message.
+- **Efficient Committing**: Commits with the provided message and then pushes the changes to the remote repository.
+- **Status Updates**: Provides ongoing feedback in the Sublime Text status bar, keeping you informed at every step.
+- **Error Handling**: Displays error messages in case of any issues during the Git operations.
+- **Cancellation Option**: Allows cancelling the commit process by pressing ESC.
+
+## Installation
+EasyGitCommit can be installed via Package Control in Sublime Text. Simply search for "EasyGitCommit" and install it directly within your editor.
+
+## Usage
+After installation, configure a keybinding to trigger the plugin:
+1. Open `Preferences > Key Bindings` in Sublime Text.
+2. Add a keybinding for the command `git_workflow`:
+
+   ```json
+   { "keys": ["your_preferred_shortcut"], "command": "git_workflow" }
+   ```
+
+Replace your_preferred_shortcut with your desired key combination.
+
+Once set up, use this shortcut to activate EasyGitCommit in any Git-enabled project.
+
+## Contributing
+
+Contributions to EasyGitCommit are welcome! If you have suggestions, bug reports, or want to contribute code, please feel free to open an issue or submit a pull request.
+
+## Support
+
+For support, questions, or feature requests, please open an issue in this repository.
+
+## License
+
+MIT
