@@ -9,7 +9,7 @@ EasyCommit simplifies the process of making Git commits, allowing developers to 
 After pressing a single key binding:
 - **Automated Git Workflow**: The plugin performs a series of Git operations: fetch, pull, and add all.
 - **Commit Messages**: After staging changes, it prompts for a commit message.
-- **Efficient Committing**: Commits with the provided message and then pushes the changes to the remote repository on the current branch.
+- **Committing**: Commits with the provided message and then pushes the changes to the remote repository on the current branch.
 - **Status Updates**: Provides ongoing feedback in the Sublime Text status bar, keeping you informed at every step.
 - **Error Handling**: Displays error messages in case of any issues during the Git operations.
 - **Cancellation Option**: Allows cancelling the commit process by pressing ESC.
