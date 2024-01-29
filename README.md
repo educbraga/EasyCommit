@@ -15,7 +15,7 @@ After pressing a single key binding:
 - **Cancellation Option**: Allows cancelling the commit process by pressing ESC.
 
 ## Installation
-EasyCommit can be installed via Package Control in Sublime Text. Simply search for "EasyCommit" and install it directly within your editor.
+EasyCommit can be installed via Package Control in Sublime Text. Simply search for "EasyCommit" and install it directly within your editor. Alternatively, you can download the .py file and place it in Sublime Text > Settings > Browse Packages > User.
 
 ## Usage
 After installation, configure a keybinding to trigger the plugin:
