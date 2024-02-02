@@ -4,9 +4,9 @@ import subprocess
 import threading
 import os
 
-class EasyCommitCommand(sublime_plugin.TextCommand):
+class EasyCommitAllCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        threading.Thread(target=self.easy_commit).start()
+        threading.Thread(target=self.easy_commit_all).start()
 
     def easy_commit_all(self):
         working_dir = self.view.window().extract_variables()['folder']
