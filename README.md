@@ -20,7 +20,7 @@ EasyCommit can be installed via Package Control in Sublime Text. Simply search f
 ## Usage
 After installation, configure a keybinding to trigger the plugin:
 1. Open `Preferences > Key Bindings` in Sublime Text.
-2. Add keybindings for the commands:
+2. Add keybindings for the following commands:
 
 For commiting all modified files:
    ```json
