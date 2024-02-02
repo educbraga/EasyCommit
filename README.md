@@ -7,7 +7,7 @@ EasyCommit simplifies the process of making Git commits, allowing developers to 
 
 ## Features
 After pressing a key binding:
-- **Automated Git Workflow**: The plugin performs: fetch, pull, and add all.
+- **Automated Git Workflow**: The plugin performs: fetch, pull, and add all or the current file.
 - **Commit Messages**: After staging changes, it prompts for a commit message.
 - **Committing**: Commits with the provided message and then pushes the changes to the remote repository on the current branch.
 - **Status Updates**: Provides ongoing feedback in the Sublime Text status bar, keeping you informed at every step.
@@ -20,10 +20,16 @@ EasyCommit can be installed via Package Control in Sublime Text. Simply search f
 ## Usage
 After installation, configure a keybinding to trigger the plugin:
 1. Open `Preferences > Key Bindings` in Sublime Text.
-2. Add a keybinding for the command `git_workflow`:
+2. Add keybindings for the commands:
 
+For commiting all modified files:
    ```json
-   { "keys": ["your_preferred_shortcut"], "command": "easy_commit" }
+   { "keys": ["your_preferred_shortcut"], "command": "easy_commit_all" }
+   ```
+
+For commiting the current file:
+```json
+   { "keys": ["your_preferred_shortcut"], "command": "easy_commit_file" }
    ```
 
 Replace your_preferred_shortcut with your desired key combination.
