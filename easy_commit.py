@@ -93,13 +93,15 @@ class EasyCommitFileCommand(sublime_plugin.TextCommand):
             self.update_status('Performing fetch...')
             if self.run_git_command(['git', 'fetch'], working_dir):
                 self.update_status('Fetch successfully completed!')
-                if self.run_git_command(['git', 'diff', '--quiet', file_name], working_dir):
-                    self.display_error_message("No changes detected in the current file.")
-                else:
-                    if self.run_git_command(['git', 'add', file_name], working_dir):
-                        sublime.set_timeout(lambda: self.request_commit_message(working_dir), 0)
-                    else:
+                if self.check_for_changes(working_dir):  # Verifica por mudanças ou arquivos novos aqui
+                    # Mudança específica: Adiciona o arquivo atualmente aberto
+                    if not self.run_git_command(['git', 'add', file_name], working_dir):
                         self.display_error_message("Failed to add current file.")
+                        return
+                    # Solicita mensagem de commit depois de adicionar o arquivo
+                    sublime.set_timeout(lambda: self.request_commit_message(working_dir), 0)
+                else:
+                    self.display_error_message("No changes detected.")                  
             else:
                 self.display_error_message("Failed to perform the fetch.")
         else:
