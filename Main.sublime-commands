@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Easy Commit All",
+        "command": "easy_commit_all_palette"
+    },
+    {
+        "caption": "Easy Commit File",
+        "command": "easy_commit_file_palette"
+    }
+]
