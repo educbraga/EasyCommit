@@ -1,10 +1,10 @@
 [
     {
-        "caption": "Easy Commit All",
+        "caption": "Easy Commit: Commit all changes.",
         "command": "easy_commit_all_palette"
     },
     {
-        "caption": "Easy Commit File",
+        "caption": "Easy Commit: Commit all changes in this file.",
         "command": "easy_commit_file_palette"
     }
 ]
