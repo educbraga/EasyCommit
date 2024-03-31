@@ -61,7 +61,7 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
             output = subprocess.check_output(['git', 'status', '--porcelain'], cwd=working_dir)
             return len(output.strip()) > 0
         except subprocess.CalledProcessError as e:
-            self.display_error_message(f"Error checking for changes: {e}")
+            self.display_error_message("Error checking for changes: " + str(e))
             return False
 
     def run_git_command(self, command, working_dir):
@@ -144,7 +144,7 @@ class EasyCommitFileCommand(sublime_plugin.TextCommand):
             output = subprocess.check_output(['git', 'status', '--porcelain'], cwd=working_dir)
             return len(output.strip()) > 0
         except subprocess.CalledProcessError as e:
-            self.display_error_message(f"Error checking for changes: {e}")
+            self.display_error_message("Error checking for changes: " + str(e))
             return False
 
     def run_git_command(self, command, working_dir):
