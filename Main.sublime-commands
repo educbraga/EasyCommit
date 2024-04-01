@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Easy Commit: Commit all changes.",
+        "command": "easy_commit_all"
+    },
+    {
+        "caption": "Easy Commit: Commit all changes in this file.",
+        "command": "easy_commit_file"
+    }
+]
