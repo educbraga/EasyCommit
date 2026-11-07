@@ -7,9 +7,9 @@ EasyCommit simplifies the process of making Git commits, allowing developers to 
 
 ## Features
 After pressing a key binding:
-- **Automated Git Workflow**: The plugin pulls, then stages all changes or only the current file.
+- **Automated Git Workflow**: The plugin stages all changes or only the current file.
 - **Commit Messages**: It prompts for a commit message. The message is optional: leave it empty and EasyCommit writes one for you (`Update <file>` or `Update N files`).
-- **Committing**: Commits and pushes to the remote repository on the current branch. "Commit all changes in this file" commits only that file, even if other files are staged.
+- **Committing**: Commits, pulls (keeping any other uncommitted work aside with `--autostash`), and pushes to the remote repository on the current branch. If a previous push failed, the next run pushes the pending commits. "Commit all changes in this file" commits only that file, even if other files are staged.
 - **Status Updates**: Provides ongoing feedback in the Sublime Text status bar, keeping you informed at every step.
 - **Error Handling**: When a Git step fails, shows Git's own error output.
 - **Cancellation Option**: Press Esc at the message prompt to cancel. Nothing is staged or changed.

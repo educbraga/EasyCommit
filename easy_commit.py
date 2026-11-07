@@ -17,8 +17,9 @@ def git(args, cwd):
     try:
         result = subprocess.run(
             ['git'] + args, cwd=cwd,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             encoding='utf-8', errors='replace',
+            env=dict(os.environ, GIT_TERMINAL_PROMPT='0'),
             creationflags=NO_CONSOLE_WINDOW)
     except OSError as e:
         raise GitError('Could not run git: {}'.format(e))
@@ -38,10 +39,12 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
     def prepare(self):
         try:
             repo = self.repo_root()
-            self.show_status('Pulling...')
-            git(['pull'], repo)
             if not git(['status', '--porcelain', '--'] + self.paths(), repo).strip():
-                self.finish('Nothing to commit.')
+                if self.unpushed_commits(repo):
+                    self.sync(repo)
+                    self.finish('Pushed pending commits.')
+                else:
+                    self.finish('Nothing to commit.')
                 return
         except GitError as e:
             self.fail(str(e))
@@ -73,12 +76,23 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
             git(['add', '-A', '--'] + paths, repo)
             message = message.strip() or self.default_message(repo, paths)
             git(['commit', '-m', message, '--'] + paths, repo)
-            self.show_status('Pushing...')
-            git(['push'], repo)
+            self.sync(repo)
         except GitError as e:
             self.fail(str(e))
             return
         self.finish('Pushed: ' + message)
+
+    def sync(self, repo):
+        self.show_status('Pulling...')
+        git(['pull', '--autostash'], repo)
+        self.show_status('Pushing...')
+        git(['push'], repo)
+
+    def unpushed_commits(self, repo):
+        try:
+            return int(git(['rev-list', '--count', '@{upstream}..HEAD'], repo))
+        except GitError:
+            return 0
 
     def default_message(self, repo, paths):
         changed = git(['diff', '--cached', '--name-only', '--'] + paths, repo).split('\n')
