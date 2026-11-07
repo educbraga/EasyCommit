@@ -1,0 +1,20 @@
+EasyCommit 3.1.0
+================
+
+New
+- The commit message is optional. Press Enter on an empty prompt and
+  EasyCommit writes "Update <file>" or "Update N files". Esc cancels.
+- If a previous push failed, the next run pushes the pending commits.
+
+Fixed
+- "Commit all changes in this file" commits only that file, even when
+  other files are already staged.
+- Pressing Esc no longer unstages what you had staged.
+- Works with a single file open (no folder), and with several folders
+  open it uses the repository of the current file.
+- Commits first, then pulls with --autostash, then pushes. This works with
+  pull.rebase=true and when the remote changed the same file.
+- Errors show Git's own message.
+- Git runs in the background, so Sublime no longer freezes during a push,
+  and no console windows flash on Windows.
+- Works on Sublime Text 3 and Sublime Text 4.
