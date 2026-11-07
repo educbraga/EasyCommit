@@ -60,20 +60,18 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
         raise GitError('The current file or folder is not inside a Git repository.')
 
     def ask_message(self, repo):
-        self.show_status('Type the commit message (Esc cancels)')
+        self.show_status('Type the commit message, or leave it empty (Esc cancels)')
         self.view.window().show_input_panel(
-            'Commit message:', '',
+            'Commit message (optional):', '',
             lambda message: threading.Thread(target=self.commit, args=(repo, message)).start(),
             None,
             lambda: self.finish('Commit canceled.'))
 
     def commit(self, repo, message):
-        if not message.strip():
-            self.finish('Commit canceled.')
-            return
         paths = self.paths()
         try:
             git(['add', '-A', '--'] + paths, repo)
+            message = message.strip() or self.default_message(repo, paths)
             git(['commit', '-m', message, '--'] + paths, repo)
             self.show_status('Pushing...')
             git(['push'], repo)
@@ -81,6 +79,13 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
             self.fail(str(e))
             return
         self.finish('Pushed: ' + message)
+
+    def default_message(self, repo, paths):
+        changed = git(['diff', '--cached', '--name-only', '--'] + paths, repo).split('\n')
+        changed = [name for name in changed if name]
+        if len(changed) == 1:
+            return 'Update ' + changed[0]
+        return 'Update {} files'.format(len(changed))
 
     def show_status(self, message):
         sublime.set_timeout(lambda: self.view.set_status(STATUS_KEY, 'EasyCommit: ' + message))

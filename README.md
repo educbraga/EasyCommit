@@ -7,12 +7,12 @@ EasyCommit simplifies the process of making Git commits, allowing developers to 
 
 ## Features
 After pressing a key binding:
-- **Automated Git Workflow**: The plugin performs: fetch, pull, and add all or the current file.
-- **Commit Messages**: After staging changes, it prompts for a commit message.
-- **Committing**: Commits with the provided message and then pushes the changes to the remote repository on the current branch.
+- **Automated Git Workflow**: The plugin pulls, then stages all changes or only the current file.
+- **Commit Messages**: It prompts for a commit message. The message is optional: leave it empty and EasyCommit writes one for you (`Update <file>` or `Update N files`).
+- **Committing**: Commits and pushes to the remote repository on the current branch. "Commit all changes in this file" commits only that file, even if other files are staged.
 - **Status Updates**: Provides ongoing feedback in the Sublime Text status bar, keeping you informed at every step.
-- **Error Handling**: Displays error messages in case of any issues during the Git operations.
-- **Cancellation Option**: Allows cancelling the commit process by pressing ESC.
+- **Error Handling**: When a Git step fails, shows Git's own error output.
+- **Cancellation Option**: Press Esc at the message prompt to cancel. Nothing is staged or changed.
 
 ## Installation
 EasyCommit can be installed via Package Control in Sublime Text. Simply search for "EasyCommit" and install it directly within your editor. Alternatively, you can download the .py file and place it in Sublime Text > Settings > Browse Packages > User.
