@@ -6,7 +6,7 @@ import sublime
 import sublime_plugin
 
 STATUS_KEY = 'easy_commit'
-NO_CONSOLE_WINDOW = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
+CREATE_NO_WINDOW = 0x08000000 if os.name == 'nt' else 0
 
 
 class GitError(Exception):
@@ -15,18 +15,18 @@ class GitError(Exception):
 
 def git(args, cwd):
     try:
-        result = subprocess.run(
+        process = subprocess.Popen(
             ['git'] + args, cwd=cwd,
             stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-            encoding='utf-8', errors='replace',
             env=dict(os.environ, GIT_TERMINAL_PROMPT='0'),
-            creationflags=NO_CONSOLE_WINDOW)
+            creationflags=CREATE_NO_WINDOW)
+        stdout, stderr = (out.decode('utf-8', 'replace') for out in process.communicate())
     except OSError as e:
         raise GitError('Could not run git: {}'.format(e))
-    if result.returncode != 0:
-        output = result.stderr.strip() or result.stdout.strip()
+    if process.returncode != 0:
+        output = stderr.strip() or stdout.strip()
         raise GitError('git {} failed.\n\n{}'.format(args[0], output))
-    return result.stdout
+    return stdout
 
 
 class EasyCommitAllCommand(sublime_plugin.TextCommand):
@@ -49,7 +49,7 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
         except GitError as e:
             self.fail(str(e))
             return
-        sublime.set_timeout(lambda: self.ask_message(repo))
+        sublime.set_timeout(lambda: self.ask_message(repo), 0)
 
     def repo_root(self):
         file_name = self.view.file_name()
@@ -102,7 +102,7 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
         return 'Update {} files'.format(len(changed))
 
     def show_status(self, message):
-        sublime.set_timeout(lambda: self.view.set_status(STATUS_KEY, 'EasyCommit: ' + message))
+        sublime.set_timeout(lambda: self.view.set_status(STATUS_KEY, 'EasyCommit: ' + message), 0)
 
     def finish(self, message):
         self.show_status(message)
@@ -112,7 +112,7 @@ class EasyCommitAllCommand(sublime_plugin.TextCommand):
         def show():
             self.view.erase_status(STATUS_KEY)
             sublime.error_message('EasyCommit\n\n' + message)
-        sublime.set_timeout(show)
+        sublime.set_timeout(show, 0)
 
 
 class EasyCommitFileCommand(EasyCommitAllCommand):
